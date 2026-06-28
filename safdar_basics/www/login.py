@@ -16,10 +16,10 @@ def get_context(context):
             context.company_name = company_doc.company_name
             context.company_logo = company_doc.company_logo
         else:
-            context.company_name = "DermaShine"
+            context.company_name = "Derma Shine"
             context.company_logo = None
     except Exception:
-        context.company_name = "DermaShine"
+        context.company_name = "Derma Shine"
         context.company_logo = None
 
     context.is_logged_in = frappe.session.user != "Guest"
@@ -35,20 +35,20 @@ def get_context(context):
     context.products = [
         {"id": 1, "src": "/assets/safdar_basics/images/products/1.jpeg", "alt": "Sweet Almond Liposoluble Wax", "category": "Waxing"},
         {"id": 2, "src": "/assets/safdar_basics/images/products/2.jpeg", "alt": "Pure Pout Lip Treatment", "category": "Makeup"},
-        {"id": 3, "src": "/assets/safdar_basics/images/products/3.jpeg", "alt": "DermaShine Glow Collection", "category": "Collection"},
+        {"id": 3, "src": "/assets/safdar_basics/images/products/3.jpeg", "alt": "Derma Shine Glow Collection", "category": "Collection"},
         {"id": 4, "src": "/assets/safdar_basics/images/products/4.jpeg", "alt": "Rice Face Scrub", "category": "Skincare"},
         {"id": 5, "src": "/assets/safdar_basics/images/products/5.jpeg", "alt": "Brightening Beauty Fluid", "category": "Skincare"},
         {"id": 6, "src": "/assets/safdar_basics/images/products/6.jpeg", "alt": "Green Apple Liposoluble Wax", "category": "Waxing"},
         {"id": 7, "src": "/assets/safdar_basics/images/products/7.jpeg", "alt": "Softening Bleach Mask", "category": "Face"},
         {"id": 8, "src": "/assets/safdar_basics/images/products/8.jpeg", "alt": "Gluta Bright Serum", "category": "Serum"},
         {"id": 9, "src": "/assets/safdar_basics/images/products/9.jpeg", "alt": "Hand & Feet Lightening Cream", "category": "Body"},
-        {"id": 10, "src": "/assets/safdar_basics/images/products/10.jpeg", "alt": "DermaShine Skincare Set", "category": "Set"},
+        {"id": 10, "src": "/assets/safdar_basics/images/products/10.jpeg", "alt": "Derma Shine Skincare Set", "category": "Set"},
         {"id": 11, "src": "/assets/safdar_basics/images/products/11.jpeg", "alt": "Walnut Face Polish", "category": "Skincare"},
         {"id": 12, "src": "/assets/safdar_basics/images/products/12.jpeg", "alt": "Skin Whitening Cream", "category": "Skincare"},
         {"id": 13, "src": "/assets/safdar_basics/images/products/13.jpeg", "alt": "Vitamin C Brightening Serum", "category": "Serum"},
         {"id": 14, "src": "/assets/safdar_basics/images/products/14.jpeg", "alt": "Rose Water Facial Toner", "category": "Toner"},
         {"id": 15, "src": "/assets/safdar_basics/images/products/15.jpeg", "alt": "Anti-Aging Night Cream", "category": "Skincare"},
-        {"id": 16, "src": "/assets/safdar_basics/images/products/16.jpeg", "alt": "DermaShine Luxury Bundle", "category": "Bundle"},
+        {"id": 16, "src": "/assets/safdar_basics/images/products/16.jpeg", "alt": "Derma Shine Luxury Bundle", "category": "Bundle"},
     ]
 
     context.features = [
@@ -105,7 +105,7 @@ def get_context(context):
         {
             "name": "Sarah Ahmed",
             "role": "CEO, Glow Beauty Co.",
-            "text": "DermaShine ERP completely transformed our operations. We reduced stockouts by 80% and our entire team loves the intuitive interface.",
+            "text": "Derma Shine ERP completely transformed our operations. We reduced stockouts by 80% and our entire team loves the intuitive interface.",
             "avatar": "SA",
             "rating": 5,
         },

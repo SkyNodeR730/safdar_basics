@@ -1,6 +1,6 @@
 /* ================================================================
    DERMASHINE LANDING PAGE — COMPLETE STYLES
-   Palette extracted from 3.jpeg (DermaShine brand image)
+   Palette extracted from 3.jpeg (Derma Shine brand image)
    ================================================================ */
 
 /* ================================================================
@@ -755,11 +755,12 @@ input, button, textarea {
 
 .ds-hero__title {
   font-family: var(--ds-font-display);
-  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
   font-weight: 700;
   line-height: 1.2;
   color: var(--ds-white);
   letter-spacing: -0.01em;
+  text-align: justify;
 }
 
 .ds-hero__subtitle {
@@ -1653,6 +1654,49 @@ input, button, textarea {
   border-color: var(--ds-purple-600);
 }
 
+/* Contact info */
+.ds-footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  font-style: normal;
+}
+
+.ds-footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
+
+.ds-footer__contact-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--ds-accent-pink, #f4abbd);
+  margin-top: 0.05rem;
+}
+
+.ds-footer__contact-item a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ds-footer__contact-item a:hover {
+  color: var(--ds-accent-pink, #f4abbd);
+}
+
 /* Nav columns */
 .ds-footer__heading {
   font-size: 0.8125rem;
@@ -1680,48 +1724,6 @@ input, button, textarea {
 }
 
 /* Newsletter */
-.ds-footer__newsletter-desc {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 1rem;
-  line-height: 1.65;
-}
-
-.ds-footer__newsletter {
-  display: flex;
-  border-radius: var(--ds-radius-md);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.ds-footer__email-input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--ds-white);
-  font-size: 0.875rem;
-  border: none;
-  outline: none;
-  min-width: 0;
-}
-
-.ds-footer__email-input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-.ds-footer__subscribe-btn {
-  padding: 0.75rem 1.125rem;
-  background: var(--ds-purple-600);
-  color: var(--ds-white);
-  font-size: 0.875rem;
-  transition: background 0.2s;
-  flex-shrink: 0;
-}
-
-.ds-footer__subscribe-btn:hover {
-  background: var(--ds-purple-500);
-}
-
 /* Bottom bar */
 .ds-footer__bottom {
   display: flex;

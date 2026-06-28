@@ -1,5 +1,5 @@
 /**
- * DermaShine Landing Page — Complete JavaScript
+ * Derma Shine Landing Page — Complete JavaScript
  * ES6 module-style IIFE. No external dependencies.
  */
 (function () {
