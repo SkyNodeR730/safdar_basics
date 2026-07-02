@@ -1749,7 +1749,7 @@ input, button, textarea {
 
 .ds-footer__legal a {
   font-size: 0.8rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.35);
   transition: color 0.2s;
 }
 
