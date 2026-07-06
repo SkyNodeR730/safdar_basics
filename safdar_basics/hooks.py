@@ -9,10 +9,19 @@ fixtures = ["Custom Field"]
 
 doc_events = {
     "Sales Invoice": {
-        "before_save": "safdar_basics.overrides.calculate_fields.before_save"
+        "validate": "safdar_basics.overrides.tax_on_price_list_rate.validate",
+        "before_save": [
+            # "safdar_basics.overrides.calculate_fields.before_save",
+        ]
     },
-    "Sales Order": {
-        "before_save": "safdar_basics.overrides.calculate_fields.before_save"
+    # "Sales Order": {
+    #     "before_save": "safdar_basics.overrides.calculate_fields.before_save"
+    # }
+}
+
+regional_overrides = {
+    "Pakistan": {
+        "erpnext.controllers.taxes_and_totals.get_itemised_tax_breakup_data": "safdar_basics.overrides.tax_on_price_list_rate.get_itemised_tax_breakup_data"
     }
 }
 
