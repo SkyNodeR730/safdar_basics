@@ -20,5 +20,7 @@ def before_save(doc, method=None):
     doc.total_sales_tax = total_sales_tax
 
     # setting value for sales person
-    if doc.sales_team[0].sales_person:
-        doc.custom_sales_person = doc.sales_team[0].sales_person
+    # setting value for sales person
+    sales_team_row = doc.sales_team[0] if doc.sales_team else None
+    if sales_team_row and sales_team_row.sales_person:
+        doc.custom_sales_person = sales_team_row.sales_person
