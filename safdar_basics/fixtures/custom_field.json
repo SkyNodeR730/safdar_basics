@@ -169,5 +169,15 @@
     "options": "currency",
     "read_only": 1,
     "insert_after": "total_discount"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Order-sales_invoice",
+    "dt": "Sales Order",
+    "fieldname": "sales_invoice",
+    "label": "Sales Invoice",
+    "fieldtype": "Link",
+    "options": "Sales Invoice",
+    "insert_after": "tax_id"
   }
 ]
