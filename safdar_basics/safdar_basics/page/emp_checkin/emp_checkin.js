@@ -474,7 +474,7 @@ class EmpCheckinPage {
             fieldtype: "Link", fieldname: "department", label: __("Department"),
             options: "Department", change: () => this.refresh(),
         });
-        this.f_dept.set_value("Willow Sales & Marketing  - STC");
+        this.f_dept.set_value("LipCara Sales - LC");
         this.f_desig = mk("ec-f-desig", {
             fieldtype: "Link", fieldname: "designation", label: __("Designation"),
             options: "Designation", change: () => this.refresh(),
