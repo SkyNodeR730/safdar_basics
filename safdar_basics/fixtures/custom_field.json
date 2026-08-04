@@ -179,5 +179,24 @@
     "fieldtype": "Link",
     "options": "Sales Invoice",
     "insert_after": "tax_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee Checkin-attendance_image",
+    "dt": "Employee Checkin",
+    "fieldname": "attendance_image",
+    "label": "Attendance Image",
+    "fieldtype": "Attach Image",
+    "insert_after": "device_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee Checkin-log_location",
+    "dt": "Employee Checkin",
+    "fieldname": "log_location",
+    "label": "Log Location",
+    "fieldtype": "Data",
+    "length": 500,
+    "insert_after": "geolocation"
   }
 ]

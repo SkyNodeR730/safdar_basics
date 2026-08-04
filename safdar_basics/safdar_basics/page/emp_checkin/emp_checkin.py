@@ -106,6 +106,8 @@ def get_absent_employees(filters):
         emp_cond += " AND e.name = %(employee)s"
     if filters.get("company"):
         emp_cond += " AND e.company = %(company)s"
+    if filters.get("branch"):
+        emp_cond += " AND e.branch = %(branch)s"
     if filters.get("department"):
         emp_cond += " AND e.department = %(department)s"
     if filters.get("designation"):
@@ -177,6 +179,8 @@ def _get_conditions(filters):
         c += " AND ec.employee = %(employee)s"
     if filters.get("company"):
         c += " AND e.company = %(company)s"
+    if filters.get("branch"):
+        c += " AND e.branch = %(branch)s"
     if filters.get("department"):
         c += " AND e.department = %(department)s"
     if filters.get("designation"):

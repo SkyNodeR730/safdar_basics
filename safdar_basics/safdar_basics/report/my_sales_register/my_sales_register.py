@@ -438,9 +438,16 @@ def get_invoices(filters, additional_query_columns):
 			si.represents_company,
 			si.company,
 		)
-		.where(si.docstatus == 1)
 		.orderby(si.posting_date, si.name, order=Order.desc)
 	)
+
+	status = filters.get("status")
+	if status == "Draft":
+		query = query.where(si.docstatus == 0)
+	elif status == "Cancelled":
+		query = query.where(si.docstatus == 2)
+	else:
+		query = query.where(si.docstatus == 1)
 
 	if additional_query_columns:
 		for col in additional_query_columns:
