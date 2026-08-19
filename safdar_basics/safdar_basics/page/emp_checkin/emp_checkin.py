@@ -27,6 +27,7 @@ def get_checkin_data(filters):
             e.image                                                          AS employee_image,
             e.designation,
             e.department,
+            e.branch,
             DATE(ec.time)                                                    AS date,
             MAX(ec.shift)                                                    AS shift,
             MAX(st.start_time)                                               AS shift_in_time,

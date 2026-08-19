@@ -1,0 +1,64 @@
+{
+ "add_total_row": 1,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-08-19 12:35:31.637479",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2026-08-19 12:35:31.637479",
+ "modified_by": "Administrator",
+ "module": "Safdar Basics",
+ "name": "My Sales Analytics",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Sales Order",
+ "report_name": "My Sales Analytics",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Stock User"
+  },
+  {
+   "role": "Maintenance User"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Sales Manager"
+  },
+  {
+   "role": "Reports 1"
+  },
+  {
+   "role": "Reports 2"
+  },
+  {
+   "role": "Reports 3"
+  },
+  {
+   "role": "Distributor KPO L1"
+  },
+  {
+   "role": "Distributor KPO L2"
+  },
+  {
+   "role": "Distributor L3"
+  },
+  {
+   "role": "Sales Person L1"
+  },
+  {
+   "role": "Sales Person L2"
+  },
+  {
+   "role": "Sales Person L3"
+  }
+ ],
+ "timeout": 0
+}

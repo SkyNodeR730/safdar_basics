@@ -738,7 +738,7 @@ class EmpCheckinPage {
                         <th>Photo</th>
                         <th class="th-left ec-th-sortable" id="ec-th-employee_name">Employee Name ${this._th_arrow("employee_name")}</th>
                         <th class="th-left">Designation</th>
-                        <th>Shift</th>
+                        <th>Branch</th>
                         <th>Shift In</th>
                         <th>Shift Out</th>
                         <th class="ec-th-sortable" id="ec-th-check_in_time">Check In ${this._th_arrow("check_in_time")}</th>
@@ -795,7 +795,7 @@ class EmpCheckinPage {
 
         const shiftIn   = r.shift_in_time  ? `<span class="ec-shift-time">${r.shift_in_time}</span>`  : `<span style="color:#ccc">—</span>`;
         const shiftOut  = r.shift_out_time ? `<span class="ec-shift-time">${r.shift_out_time}</span>` : `<span style="color:#ccc">—</span>`;
-        const shiftName = r.shift ? `<span class="ec-shift-name">${this._esc(r.shift)}</span>` : `<span style="color:#ccc">—</span>`;
+        const branchName = r.branch ? `<span class="ec-shift-name">${this._esc(r.branch)}</span>` : `<span style="color:#ccc">—</span>`;
 
         const wh = parseFloat(r.working_hours);
         const whCell = isNaN(wh) || r.working_hours == null
@@ -811,7 +811,7 @@ class EmpCheckinPage {
             <td><div class="ec-avatar-wrap">${photo}</div></td>
             <td class="td-left"><span class="ec-ename">${this._esc(r.employee_name) || "—"}</span></td>
             <td class="td-left"><span class="ec-desig">${this._esc(r.designation) || "—"}</span></td>
-            <td>${shiftName}</td>
+            <td>${branchName}</td>
             <td>${shiftIn}</td>
             <td>${shiftOut}</td>
             <td>${inTime}</td>
@@ -984,7 +984,7 @@ class EmpCheckinPage {
                 <td style="text-align:center;">${photo}</td>
                 <td style="font-weight:700;font-size:10.5px;text-align:left;padding-left:5px;">${r.employee_name||"—"}</td>
                 <td style="font-size:9px;color:#6678a8;text-align:left;">${r.designation||"—"}</td>
-                <td style="font-size:9px;color:#3d5afe;font-weight:600;">${r.shift||"—"}</td>
+                <td style="font-size:9px;color:#3d5afe;font-weight:600;">${r.branch||"—"}</td>
                 <td>${sin}</td><td>${sout}</td>
                 <td>${inTime}</td>
                 <td style="text-align:center;">${inImg}</td>
@@ -1082,7 +1082,7 @@ table.at tbody td{padding:4px 5px;vertical-align:middle;text-align:center;font-s
     <th>#</th><th>Date</th><th>Emp ID</th><th>Photo</th>
     <th style="text-align:left;padding-left:5px;">Name</th>
     <th style="text-align:left;">Designation</th>
-    <th>Shift</th><th>S.In</th><th>S.Out</th>
+    <th>Branch</th><th>S.In</th><th>S.Out</th>
     <th>Check In</th><th>IN Img</th><th>IN Loc</th>
     <th>Check Out</th><th>OUT Img</th><th>OUT Loc</th>
     <th>Hrs</th>
@@ -1130,8 +1130,8 @@ ${this.absent.length ? `
         const esc = v => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
 
         // Sheet 1 — checkin data
-        const cols1 = ["Date","Employee ID","Employee Name","Designation","Department","Shift","Shift Start","Shift End","Check In","IN Location","Check Out","OUT Location","Working Hours"];
-        const flds1 = ["date","employee","employee_name","designation","department","shift","shift_in_time","shift_out_time","check_in_time","in_log_location","check_out_time","out_log_location","working_hours"];
+        const cols1 = ["Date","Employee ID","Employee Name","Designation","Department","Branch","Shift Start","Shift End","Check In","IN Location","Check Out","OUT Location","Working Hours"];
+        const flds1 = ["date","employee","employee_name","designation","department","branch","shift_in_time","shift_out_time","check_in_time","in_log_location","check_out_time","out_log_location","working_hours"];
         const lines1 = [cols1.map(esc).join(","), ...this.data.map(r => flds1.map(f => esc(f === "date" ? this._fmt_date(r[f]) : r[f])).join(","))];
 
         // Sheet 2 — absent employees
