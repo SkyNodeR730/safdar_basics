@@ -71,6 +71,33 @@ class Analytics:
 			return []
 		return [["Sales Team", "sales_person", "=", self.filters.sales_person]]
 
+	def get_matching_customers(self):
+		if not hasattr(self, "_matching_customers"):
+			or_filters = {}
+			if self.filters.get("market_segment"):
+				or_filters["market_segment"] = self.filters.market_segment
+			if self.filters.get("industry"):
+				or_filters["industry"] = self.filters.industry
+
+			self._matching_customers = (
+				frappe.get_all("Customer", or_filters=or_filters, pluck="name")
+				if or_filters
+				else None
+			)
+		return self._matching_customers
+
+	def get_customer_filters(self):
+		customers = self.get_matching_customers()
+		if customers is None:
+			return []
+		return [["customer", "in", customers]]
+
+	def apply_customer_filter(self, query, parent_doctype):
+		customers = self.get_matching_customers()
+		if customers is None:
+			return query
+		return query.where(parent_doctype.customer.isin(customers))
+
 	def run(self):
 		self.update_company_list_for_parent_company()
 		self.get_columns()
@@ -174,7 +201,9 @@ class Analytics:
 			)
 			.orderby(doctype.order_type)
 		)
-		self.entries = self.apply_sales_person_filter(query, doctype).run(as_dict=True)
+		query = self.apply_sales_person_filter(query, doctype)
+		query = self.apply_customer_filter(query, doctype)
+		self.entries = query.run(as_dict=True)
 
 		self.get_teams()
 
@@ -199,6 +228,7 @@ class Analytics:
 				["company", "in", self.filters.company],
 				[self.date_field, "between", [self.filters.from_date, self.filters.to_date]],
 				*self.get_sales_person_filters(),
+				*self.get_customer_filters(),
 			],
 		)
 
@@ -232,7 +262,9 @@ class Analytics:
 				& (doctype[self.date_field].between(self.filters.from_date, self.filters.to_date))
 			)
 		)
-		self.entries = self.apply_sales_person_filter(query, doctype).run(as_dict=True)
+		query = self.apply_sales_person_filter(query, doctype)
+		query = self.apply_customer_filter(query, doctype)
+		self.entries = query.run(as_dict=True)
 
 		self.entity_names = {}
 		for d in self.entries:
@@ -260,6 +292,7 @@ class Analytics:
 				["company", "in", self.filters.company],
 				[self.date_field, "between", [self.filters.from_date, self.filters.to_date]],
 				*self.get_sales_person_filters(),
+				*self.get_customer_filters(),
 			],
 		)
 		self.get_groups()
@@ -288,7 +321,9 @@ class Analytics:
 				& (doctype[self.date_field].between(self.filters.from_date, self.filters.to_date))
 			)
 		)
-		self.entries = self.apply_sales_person_filter(query, doctype).run(as_dict=True)
+		query = self.apply_sales_person_filter(query, doctype)
+		query = self.apply_customer_filter(query, doctype)
+		self.entries = query.run(as_dict=True)
 
 		self.get_groups()
 
@@ -309,6 +344,7 @@ class Analytics:
 				["project", "!=", ""],
 				[self.date_field, "between", [self.filters.from_date, self.filters.to_date]],
 				*self.get_sales_person_filters(),
+				*self.get_customer_filters(),
 			],
 		)
 
@@ -317,7 +353,14 @@ class Analytics:
 			return
 
 		name_field = f"{scrub(self.filters.tree_type)}_name"
-		for d in frappe.get_all(self.filters.tree_type, fields=["name", name_field]):
+
+		filters = {}
+		if self.filters.tree_type == "Customer":
+			customers = self.get_matching_customers()
+			if customers is not None:
+				filters["name"] = ["in", customers]
+
+		for d in frappe.get_all(self.filters.tree_type, filters=filters, fields=["name", name_field]):
 			self.entity_periodic_data.setdefault(d.name, frappe._dict())
 			self.entity_names.setdefault(d.name, d.get(name_field))
 
