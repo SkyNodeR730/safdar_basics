@@ -45,10 +45,15 @@ def _execute(filters=None, additional_table_columns=None, additional_conditions=
 	sales_persons = get_sales_persons(set(d.parent for d in item_list))
 	so_dn_map = get_delivery_notes_against_sales_order(item_list)
 
+	if filters.get("group_by") == "Sales Person":
+		item_list = sorted(item_list, key=lambda d: ", ".join(sales_persons.get(d.parent, [])))
+
 	data = []
 	total_row_map = {}
 	skip_total_row = 0
-	prev_group_by_value = ""
+	# None (not "") so the first group transition is always detected, even when the
+	# first item's group value is itself blank (e.g. a Sales Order with no Sales Team row).
+	prev_group_by_value = None
 
 	if filters.get("group_by"):
 		grand_total = get_grand_total(filters, "Sales Order")
@@ -78,6 +83,8 @@ def _execute(filters=None, additional_table_columns=None, additional_conditions=
 			"stock_qty": d.stock_qty,
 			"stock_uom": d.stock_uom,
 		}
+
+		d["sales_person"] = row["sales_person"]
 
 		if d.stock_uom != d.uom and d.stock_qty:
 			row.update({"rate": (d.base_net_rate * d.qty) / d.stock_qty, "amount": d.base_net_amount})
@@ -357,8 +364,13 @@ def apply_group_by_conditions(query, si, ii, filters):
 		query = query.orderby(ii.item_code)
 	elif filters.get("group_by") == "Item Group":
 		query = query.orderby(ii.item_group)
+	elif filters.get("group_by") == "Order Date":
+		query = query.orderby(si.transaction_date, order=Order.desc)
 	elif filters.get("group_by") in ("Customer", "Customer Group", "Territory"):
 		query = query.orderby(si[frappe.scrub(filters.get("group_by"))])
+	# "Sales Person" is not a field on Sales Order / Sales Order Item, so it can't be
+	# ordered at the SQL level — item_list is re-sorted in Python after the sales
+	# team lookup instead (see _execute).
 
 	return query
 
@@ -742,6 +754,12 @@ def get_group_by_and_display_fields(filters):
 		subtotal_display_field = "sales_order"
 	elif filters.get("group_by") == "Sales Order":
 		group_by_field = "parent"
+		subtotal_display_field = "item_code"
+	elif filters.get("group_by") == "Order Date":
+		group_by_field = "transaction_date"
+		subtotal_display_field = "item_code"
+	elif filters.get("group_by") == "Sales Person":
+		group_by_field = "sales_person"
 		subtotal_display_field = "item_code"
 	else:
 		group_by_field = frappe.scrub(filters.get("group_by"))

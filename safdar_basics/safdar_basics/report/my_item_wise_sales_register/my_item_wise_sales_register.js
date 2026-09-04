@@ -70,7 +70,17 @@ frappe.query_reports["My Item-wise Sales Register"] = {
 			label: __("Group By"),
 			fieldname: "group_by",
 			fieldtype: "Select",
-			options: ["", "Customer Group", "Customer", "Item Group", "Item", "Territory", "Sales Order"],
+			options: [
+				"",
+				"Customer Group",
+				"Customer",
+				"Item Group",
+				"Item",
+				"Territory",
+				"Sales Order",
+				"Order Date",
+				"Sales Person",
+			],
 		},
 	],
 	formatter: function (value, row, column, data, default_formatter) {
