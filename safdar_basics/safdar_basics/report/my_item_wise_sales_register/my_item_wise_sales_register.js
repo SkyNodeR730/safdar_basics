@@ -18,10 +18,22 @@ frappe.query_reports["My Item-wise Sales Register"] = {
 			reqd: 1,
 		},
 		{
+			fieldname: "customer_group",
+			label: __("Customer Group"),
+			fieldtype: "Link",
+			options: "Customer Group",
+		},
+		{
 			fieldname: "customer",
 			label: __("Customer"),
 			fieldtype: "Link",
 			options: "Customer",
+			get_query: function () {
+				const customer_group = frappe.query_report.get_filter_value("customer_group");
+				return {
+					filters: { customer_group: customer_group },
+				};
+			},
 		},
 		{
 			fieldname: "company",

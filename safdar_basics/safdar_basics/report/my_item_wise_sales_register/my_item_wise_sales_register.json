@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2026-09-04 06:29:02.660405",
+ "modified": "2026-09-05 16:12:10.131938",
  "modified_by": "Administrator",
  "module": "Safdar Basics",
  "name": "My Item-wise Sales Register",
@@ -25,6 +25,33 @@
   },
   {
    "role": "Accounts User"
+  },
+  {
+   "role": "Reports 1"
+  },
+  {
+   "role": "Reports 2"
+  },
+  {
+   "role": "Reports 3"
+  },
+  {
+   "role": "Distributor KPO L1"
+  },
+  {
+   "role": "Distributor KPO L2"
+  },
+  {
+   "role": "Distributor KPO L3"
+  },
+  {
+   "role": "Sales Person L1"
+  },
+  {
+   "role": "Sales Person L2"
+  },
+  {
+   "role": "Sales Person L3"
   }
  ],
  "timeout": 0
